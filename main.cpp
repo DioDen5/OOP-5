@@ -39,7 +39,11 @@ int main() {
     t->ThrowGrenade("BOOM");
     delete t;
 
-
+    cout << "\nMULTIROLE Тест:\n";
+    Player* multi = new MultiRole("sh1ro");
+    multi->Action();
+    multi->ShowInfo();
+    delete multi;
 
     return 0;
 }

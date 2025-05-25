@@ -18,8 +18,6 @@ void Terrorist::Action() {
     cout << nickname << " plants the bomb and shoots." << endl;
 }
 
-
-
 CounterTerrorist::CounterTerrorist(string nickname, int health, int armor)
     : Player(nickname, health, armor) {}
 
@@ -48,4 +46,17 @@ Sniper::Sniper(string nickname, int zoom, int health, int armor)
 
 void Sniper::Action() {
     cout << nickname << " takes a scoped shot (zoom=" << zoom << "x)." << endl;
+}
+
+MultiRole::MultiRole(string nickname)
+    : Player(nickname, 120, 100), Terrorist(nickname), CounterTerrorist(nickname) {
+    cout << "MultiRole constructor: " << nickname << endl;
+}
+
+MultiRole::~MultiRole() {
+    cout << "MultiRole destructor: " << nickname << endl;
+}
+
+void MultiRole::Action() {
+    cout << nickname << " performs multi-role operations." << endl;
 }

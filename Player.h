@@ -19,13 +19,13 @@ public:
     virtual ~Player() {}
 };
 
-class Terrorist : public Player {
+class Terrorist : virtual public Player {
 public:
     Terrorist(string nickname, int health = 100, int armor = 50);
     void Action() override;
 
     template<typename T>
-void ThrowGrenade(T value) {
+    void ThrowGrenade(T value) {
         if constexpr (is_same<T, int>::value) {
             cout << nickname << " throws " << value << " grenades." << endl;
         } else if constexpr (is_same<T, double>::value) {
@@ -36,7 +36,7 @@ void ThrowGrenade(T value) {
     }
 };
 
-class CounterTerrorist : public Player {
+class CounterTerrorist : virtual public Player {
 public:
     CounterTerrorist(string nickname, int health = 100, int armor = 70);
     void Action() override;
@@ -58,6 +58,13 @@ private:
 public:
     Sniper(string nickname, int zoom = 8, int health = 90, int armor = 80);
     void Action() override;
+};
+
+class MultiRole : public Terrorist, public CounterTerrorist {
+public:
+    MultiRole(string nickname);
+    void Action() override;
+    ~MultiRole();
 };
 
 #endif
